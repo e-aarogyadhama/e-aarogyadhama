@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f8fb;
+}
+
+header {
+    background: #0077cc;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.lang-btn {
+    background: white;
+    color: #0077cc;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: #e6f2ff;
+}
+
+.hero h1 {
+    color: #0077cc;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.whatsapp {
+    background: #25D366;
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.departments ul {
+    list-style: none;
+    padding: 0;
+}
+
+.departments li {
+    padding: 5px;
+}
+
+.appointment form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.appointment input,
+.appointment select,
+.appointment textarea {
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.appointment button {
+    background: #0077cc;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+footer {
+    background: #0077cc;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
