@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-AAROGYADHAMA Hospital</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">E-AAROGYADHAMA</div>
+    <button onclick="toggleLanguage()" class="lang-btn">EN | ಕನ್ನಡ</button>
+</header>
+
+<section class="hero">
+    <h1 id="hero-title">Your Health, Our Commitment</h1>
+    <p id="hero-sub">Advanced Care with Compassion</p>
+    <a href="#appointment" class="btn">Book Appointment</a>
+    <a href="https://wa.me/919480122011" class="btn whatsapp">WhatsApp Now</a>
+</section>
+
+<section class="about">
+    <h2 id="about-title">About Us</h2>
+    <p id="about-text">
+        E-AAROGYADHAMA Hospital & Laboratory provides affordable and quality healthcare services in Shivamogga.
+    </p>
+</section>
+
+<section class="departments">
+    <h2>Departments</h2>
+    <ul>
+        <li>General Medicine</li>
+        <li>Obstetrics & Gynecology</li>
+        <li>Laboratory Services</li>
+        <li>Pharmacy</li>
+        <li>Emergency Care</li>
+    </ul>
+</section>
+
+<section id="appointment" class="appointment">
+    <h2>Book Appointment</h2>
+    <form>
+        <input type="text" placeholder="Patient Name" required>
+        <input type="tel" placeholder="Mobile Number" required>
+        <select>
+            <option>Select Department</option>
+            <option>General Medicine</option>
+            <option>Gynecology</option>
+            <option>Lab</option>
+        </select>
+        <input type="date" required>
+        <textarea placeholder="Message"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+<section class="contact">
+    <h2>Contact Us</h2>
+    <p>
+        S.R.K. Complex, Near Padma Talkies Bus Stop,<br>
+        Anupinakatte Main Road, Gopala,<br>
+        Shivamogga – 577205
+    </p>
+    <p>Call: 08182457924</p>
+    <p>WhatsApp: 9480122011</p>
+    <p>Email: e.aarogyadhama@gmail.com</p>
+</section>
+
+<footer>
+    <p>© 2026 E-AAROGYADHAMA | All Rights Reserved</p>
+</footer>
+
+<script>
+let english = true;
+
+function toggleLanguage(){
+    if(english){
+        document.getElementById("hero-title").innerText = "ನಿಮ್ಮ ಆರೋಗ್ಯ – ನಮ್ಮ ಬದ್ಧತೆ";
+        document.getElementById("hero-sub").innerText = "ಆಧುನಿಕ ಚಿಕಿತ್ಸೆ ಮತ್ತು ಮಾನವೀಯ ಸೇವೆ";
+        document.getElementById("about-title").innerText = "ನಮ್ಮ ಬಗ್ಗೆ";
+        document.getElementById("about-text").innerText = "ಇ-ಆರೋಗ್ಯಧಾಮ ಆಸ್ಪತ್ರೆ ಮತ್ತು ಪ್ರಯೋಗಾಲಯ ಶಿವಮೊಗ್ಗದಲ್ಲಿ ಉತ್ತಮ ಮತ್ತು ಕಡಿಮೆ ದರದ ಆರೋಗ್ಯ ಸೇವೆ ಒದಗಿಸುತ್ತದೆ.";
+        english = false;
+    } else {
+        document.getElementById("hero-title").innerText = "Your Health, Our Commitment";
+        document.getElementById("hero-sub").innerText = "Advanced Care with Compassion";
+        document.getElementById("about-title").innerText = "About Us";
+        document.getElementById("about-text").innerText = "E-AAROGYADHAMA Hospital & Laboratory provides affordable and quality healthcare services in Shivamogga.";
+        english = true;
+    }
+}
+</script>
+
+</body>
+</html>
