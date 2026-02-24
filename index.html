@@ -41,18 +41,46 @@
 <section id="appointment" class="appointment">
     <h2>Book Appointment</h2>
     <form>
-        <input type="text" placeholder="Patient Name" required>
-        <input type="tel" placeholder="Mobile Number" required>
-        <select>
-            <option>Select Department</option>
-            <option>General Medicine</option>
-            <option>Gynecology</option>
-            <option>Lab</option>
-        </select>
-        <input type="date" required>
-        <textarea placeholder="Message"></textarea>
-        <button type="submit">Submit</button>
-    </form>
+        <form id="appointmentForm">
+  <input type="text" id="name" placeholder="Patient Name" required>
+  <input type="text" id="mobile" placeholder="Mobile Number" required>
+  <select id="department" required>
+    <option value="">Select Department</option>
+    <option>General Medicine</option>
+    <option>Obstetrics & Gynecology</option>
+    <option>Laboratory Services</option>
+    <option>Pharmacy</option>
+    <option>Emergency Care</option>
+  </select>
+  <input type="date" id="date" required>
+  <textarea id="message" placeholder="Message"></textarea>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    name: document.getElementById("name").value,
+    mobile: document.getElementById("mobile").value,
+    department: document.getElementById("department").value,
+    date: document.getElementById("date").value,
+    message: document.getElementById("message").value
+  };
+
+  const response = await fetch("https://e-aarogyadhama-backend-1.onrender.com/api/appointments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  const result = await response.json();
+  alert(result.message);
+});
+</script>
 </section>
 
 <section class="contact">
