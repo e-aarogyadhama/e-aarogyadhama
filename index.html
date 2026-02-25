@@ -43,7 +43,7 @@
         <form id="appointmentForm">
   <input type="text" id="name" placeholder="Patient Name" required>
   <input type="text" id="mobile" placeholder="Mobile Number" required>
-  <select id="department" required>
+ <select id="department" required onchange="updateTimeSlots()">
     <option value="">Select Department</option>
     <option>General Medicine</option>
     <option>Obstetrics & Gynecology</option>
