@@ -52,26 +52,43 @@
     <option>Emergency Care</option>
   </select>
   <input type="date" id="date" required>
-            <select id="time" required>
+          <select id="time" required>
   <option value="">Select Time Slot</option>
-  <option>09:00 AM</option>
-  <option>09:30 AM</option>
-  <option>10:00 AM</option>
-  <option>10:30 AM</option>
-  <option>11:00 AM</option>
-  <option>11:30 AM</option>
-  <option>12:00 PM</option>
-  <option>04:00 PM</option>
-  <option>04:30 PM</option>
-  <option>05:00 PM</option>
-  <option>05:30 PM</option>
-  <option>06:00 PM</option>
 </select>
-  <textarea id="message" placeholder="Message"></textarea>
-  <button type="submit">Submit</button>
-</form>
 
 <script>
+function generateTimeSlots(startHour, startMinute, endHour, endMinute) {
+    const timeSelect = document.getElementById("time");
+    timeSelect.innerHTML = '<option value="">Select Time Slot</option>';
+
+    while (
+        startHour < endHour ||
+        (startHour === endHour && startMinute <= endMinute)
+    ) {
+        let hour = startHour;
+        let minute = startMinute;
+
+        let ampm = hour >= 12 ? "PM" : "AM";
+        let displayHour = hour % 12;
+        displayHour = displayHour ? displayHour : 12;
+
+        let displayMinute = minute < 10 ? "0" + minute : minute;
+
+        let timeString = `${displayHour}:${displayMinute} ${ampm}`;
+
+        let option = document.createElement("option");
+        option.value = timeString;
+        option.textContent = timeString;
+        timeSelect.appendChild(option);
+
+        startMinute += 30;
+        if (startMinute === 60) {
+            startMinute = 0;
+            startHour++;
+        }
+    }
+}
+</script>
 document.getElementById("appointmentForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
