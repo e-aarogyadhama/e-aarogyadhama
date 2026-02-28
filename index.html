@@ -48,6 +48,7 @@
     <option>General Medicine</option>
     <option>Obstetrics & Gynecology</option>
     <option>Laboratory Services</option>
+     
     <option>Pharmacy</option>
     <option>Emergency Care</option>
   </select>
@@ -63,15 +64,14 @@ function generateTimeSlots(startHour, startMinute, endHour, endMinute) {
 
     while (
         startHour < endHour ||
-        (startHour === endHour && startMinute <= endMinute)
+        (startHour === endHour && startMinute < endMinute)
     ) {
         let hour = startHour;
         let minute = startMinute;
 
         let ampm = hour >= 12 ? "PM" : "AM";
-        let displayHour = hour % 12;
-        displayHour = displayHour ? displayHour : 12;
-
+       let displayHour = hour % 12;
+displayHour = displayHour === 0 ? 12 : displayHour;
         let displayMinute = minute < 10 ? "0" + minute : minute;
 
         let timeString = `${displayHour}:${displayMinute} ${ampm}`;
