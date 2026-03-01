@@ -1,154 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-AAROGYADHAMA Hospital</title>
-<link rel="stylesheet" href="style.css">
+  <title>E-AAROGYADHAMA Hospital</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+    }
+
+    header {
+      background: #0d6efd;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero {
+      background: white;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #0d6efd;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    footer {
+      background: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">E-AAROGYADHAMA</div>
-    <button onclick="toggleLanguage()" class="lang-btn">EN | ಕನ್ನಡ</button>
+  E-AAROGYADHAMA HOSPITAL
 </header>
 
 <section class="hero">
-    <h1 id="hero-title">Your Health, Our Commitment</h1>
-    <p id="hero-sub">Advanced Care with Compassion</p>
-    <a href="#appointment" class="btn">Book Appointment</a>
-    <a href="https://wa.me/919480122011" class="btn whatsapp">WhatsApp Now</a>
+  <h1>Your Health, Our Commitment</h1>
+  <p>Advanced Care with Compassion</p>
+  <a href="#appointment" class="btn">Book Appointment</a>
 </section>
 
-<section class="about">
-    <h2 id="about-title">About Us</h2>
-    <p id="about-text">
-        E-AAROGYADHAMA Hospital & Laboratory provides affordable and quality healthcare services in Shivamogga.
-    </p>
+<section id="about">
+  <h2>About Us</h2>
+  <p>
+    E-AAROGYADHAMA Hospital provides quality healthcare,
+    OP, IP, Lab, Pharmacy and Emergency services.
+  </p>
 </section>
 
-<section class="departments">
-    <h2>Departments</h2>
-    <ul>
-        <li>General Medicine</li>
-        <li>Obstetrics & Gynecology</li>
-        <li>Laboratory Services</li>
-        <li>Pharmacy</li>
-        <li>Emergency Care</li>
-    </ul>
+<section id="appointment">
+  <h2>Book Appointment</h2>
+
+  <div class="card">
+    <form id="appointmentForm">
+      <input type="text" id="name" placeholder="Patient Name" required />
+      <input type="text" id="mobile" placeholder="Mobile Number" required />
+
+      <select id="department" required>
+        <option value="">Select Department</option>
+        <option>General Medicine</option>
+        <option>Obstetrics & Gynecology</option>
+        <option>Laboratory Services</option>
+        <option>Pharmacy</option>
+        <option>Emergency Care</option>
+      </select>
+
+      <input type="date" id="date" required />
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
 </section>
 
-<section id="appointment" class="appointment">
-    <h2>Book Appointment</h2>
-        <form id="appointmentForm">
-  <input type="text" id="name" placeholder="Patient Name" required>
-  <input type="text" id="mobile" placeholder="Mobile Number" required>
- <select id="department" required onchange="updateTimeSlots()">
-    <option value="">Select Department</option>
-    <option>General Medicine</option>
-    <option>Obstetrics & Gynecology</option>
-    <option>Laboratory Services</option>
-     
-    <option>Pharmacy</option>
-    <option>Emergency Care</option>
-  </select>
-  <input type="date" id="date" required>
-          <select id="time" required>
-  <option value="">Select Time Slot</option>
-</select>
-
-<script>
-function generateTimeSlots(startHour, startMinute, endHour, endMinute) {
-    const timeSelect = document.getElementById("time");
-    timeSelect.innerHTML = '<option value="">Select Time Slot</option>';
-
-    while (
-        startHour < endHour ||
-        (startHour === endHour && startMinute < endMinute)
-    ) {
-        let hour = startHour;
-        let minute = startMinute;
-
-        let ampm = hour >= 12 ? "PM" : "AM";
-       let displayHour = hour % 12;
-displayHour = displayHour === 0 ? 12 : displayHour;
-        let displayMinute = minute < 10 ? "0" + minute : minute;
-
-        let timeString = `${displayHour}:${displayMinute} ${ampm}`;
-
-        let option = document.createElement("option");
-        option.value = timeString;
-        option.textContent = timeString;
-        timeSelect.appendChild(option);
-
-        startMinute += 30;
-        if (startMinute === 60) {
-            startMinute = 0;
-            startHour++;
-        }
-    }
-}
-</script>
-document.getElementById("appointmentForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-   const data = {
-  name: document.getElementById("name").value,
-  mobile: document.getElementById("mobile").value,
-  department: document.getElementById("department").value,
-  date: document.getElementById("date").value,
-  time: document.getElementById("time").value,  
-  message: document.getElementById("message").value
-};
-
-  const response = await fetch("https://e-aarogyadhama-backend-1.onrender.com/api/appointments", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-
-  const result = await response.json();
-  alert(result.message);
-});
-</script>
-</section>
-
-<section class="contact">
-    <h2>Contact Us</h2>
-    <p>
-        S.R.K. Complex, Near Padma Talkies Bus Stop,<br>
-        Anupinakatte Main Road, Gopala,<br>
-        Shivamogga – 577205
-    </p>
-    <p>Call: 08182457924</p>
-    <p>WhatsApp: 9480122011</p>
-    <p>Email: e.aarogyadhama@gmail.com</p>
+<section>
+  <h2>Contact Us</h2>
+  <p>
+    S.R.K Complex, Near Padma Talkies Bus Stop,<br>
+    Anupinakatte Main Road, Gopala,<br>
+    Shivamogga – 577205<br>
+    Call: 08182457924
+  </p>
 </section>
 
 <footer>
-    <p>© 2026 E-AAROGYADHAMA | All Rights Reserved</p>
+  © 2026 E-AAROGYADHAMA | All Rights Reserved
 </footer>
 
 <script>
-let english = true;
-
-function toggleLanguage(){
-    if(english){
-        document.getElementById("hero-title").innerText = "ನಿಮ್ಮ ಆರೋಗ್ಯ – ನಮ್ಮ ಬದ್ಧತೆ";
-        document.getElementById("hero-sub").innerText = "ಆಧುನಿಕ ಚಿಕಿತ್ಸೆ ಮತ್ತು ಮಾನವೀಯ ಸೇವೆ";
-        document.getElementById("about-title").innerText = "ನಮ್ಮ ಬಗ್ಗೆ";
-        document.getElementById("about-text").innerText = "ಇ-ಆರೋಗ್ಯಧಾಮ ಆಸ್ಪತ್ರೆ ಮತ್ತು ಪ್ರಯೋಗಾಲಯ ಶಿವಮೊಗ್ಗದಲ್ಲಿ ಉತ್ತಮ ಮತ್ತು ಕಡಿಮೆ ದರದ ಆರೋಗ್ಯ ಸೇವೆ ಒದಗಿಸುತ್ತದೆ.";
-        english = false;
-    } else {
-        document.getElementById("hero-title").innerText = "Your Health, Our Commitment";
-        document.getElementById("hero-sub").innerText = "Advanced Care with Compassion";
-        document.getElementById("about-title").innerText = "About Us";
-        document.getElementById("about-text").innerText = "E-AAROGYADHAMA Hospital & Laboratory provides affordable and quality healthcare services in Shivamogga.";
-        english = true;
-    }
-}
+document.getElementById("appointmentForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Appointment Submitted Successfully!");
+});
 </script>
 
 </body>
