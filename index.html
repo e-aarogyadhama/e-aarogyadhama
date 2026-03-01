@@ -125,9 +125,57 @@
 </footer>
 
 <script>
+const bookedSlots = {}; // temporary storage
+
+function generateSlots(department) {
+  const timeSlots = [];
+  
+  if (department === "General Medicine") {
+    return ["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM"];
+  }
+  if (department === "Obstetrics & Gynecology") {
+    return ["10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM"];
+  }
+  if (department === "Laboratory Services") {
+    return ["7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM"];
+  }
+  return ["9:00 AM", "9:30 AM"];
+}
+
+const departmentSelect = document.getElementById("department");
+
+const timeSelect = document.createElement("select");
+timeSelect.id = "time";
+timeSelect.required = true;
+departmentSelect.parentNode.insertBefore(timeSelect, departmentSelect.nextSibling);
+
+departmentSelect.addEventListener("change", function () {
+  timeSelect.innerHTML = "<option>Select Time Slot</option>";
+  const slots = generateSlots(this.value);
+
+  slots.forEach(slot => {
+    const option = document.createElement("option");
+    option.value = slot;
+    option.textContent = slot;
+    timeSelect.appendChild(option);
+  });
+});
+
 document.getElementById("appointmentForm").addEventListener("submit", function(e){
   e.preventDefault();
-  alert("Appointment Submitted Successfully!");
+
+  const dept = departmentSelect.value;
+  const date = document.getElementById("date").value;
+  const time = timeSelect.value;
+
+  if (!bookedSlots[date]) bookedSlots[date] = [];
+  if (bookedSlots[date].includes(time)) {
+    alert("This slot already booked!");
+    return;
+  }
+
+  bookedSlots[date].push(time);
+  alert("Appointment Booked Successfully!");
 });
 </script>
 
